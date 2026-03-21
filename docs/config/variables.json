@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-03-21T06:14:52.983Z",
+  "variables": [
+    {
+      "id": "374507000581091117",
+      "name": "numrot_token",
+      "api_name": "numrot_token",
+      "type": "",
+      "description": "Token generado para la integración con Numrot. Caduca cada 60 minutos."
+    },
+    {
+      "id": "374507000621942463",
+      "name": "Descuento Certificación",
+      "api_name": "Descuento_certificacion",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485445063",
+      "name": "Descuento Financiacion Azulo - Costa Rica",
+      "api_name": "Descuento_Financiacion_Azulo_Costa_Rica",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485445065",
+      "name": "Descuento Financiacion Conape",
+      "api_name": "Descuento_Financiacion_Conape",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485445061",
+      "name": "Descuento Letra de Cambio - Costa Rica",
+      "api_name": "Descuento_Letra_de_Cambio_Costa_Rica",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485445059",
+      "name": "Descuento Pago Unico - Costa Rica",
+      "api_name": "Descuento_Pago_Unico_Costa_Rica",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485445057",
+      "name": "Descuento Tasa Cero - Costa Rica",
+      "api_name": "Descuento_Tasa_Cero_Costa_Rica",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485910636",
+      "name": "Descuento Financiacion - Mexico",
+      "api_name": "Descuento_Financiacion_Mexico",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485910634",
+      "name": "Descuento Pago Personalizado - Mexico",
+      "api_name": "Descuento_Pago_Personalizado_Mexico",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000485910638",
+      "name": "Descuento Pago Unico - Mexico",
+      "api_name": "Descuento_Pago_Unico_Mexico",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000674589305",
+      "name": "Embajador - Asociación",
+      "api_name": "Embajador_Asociaci_n",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000674589307",
+      "name": "Embajador - Empresa",
+      "api_name": "Embajador_Empresa",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000674589309",
+      "name": "Embajador - Particular",
+      "api_name": "Embajador_Particular",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000674589311",
+      "name": "Embajador - Trabajador",
+      "api_name": "Embajador_Trabajador",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000063415328",
+      "name": "Certificado eventos",
+      "api_name": "Certificado_eventos",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000462650001",
+      "name": "Last_User_Financiera_CostaRica",
+      "api_name": "Last_User_Financiera_CostaRica",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000100813274",
+      "name": "Last_User_Financiera_Inter",
+      "api_name": "Last_User_Financiera_Inter",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000230039001",
+      "name": "Last_User_Financiera_Latam",
+      "api_name": "Last_User_Financiera_Latam",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000002767094",
+      "name": "Last_User_Financiera_Manana",
+      "api_name": "Last_User_Financiera_Manana",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000003173599",
+      "name": "Last_User_Financiera_Tarde",
+      "api_name": "Last_User_Financiera_Tarde",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000532674021",
+      "name": "Last_User_Financiera_Tarde_18_20",
+      "api_name": "Last_User_Financiera_Tarde_18_20",
+      "type": "",
+      "description": "Variable con el Id del último usuario asignado en el horario de 18 a 20 (horario de tarde + Vicenta) para España"
+    },
+    {
+      "id": "374507000133922681",
+      "name": "Last_User_grupo_financiacion",
+      "api_name": "Last_User_grupo_financiacion",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000922064372",
+      "name": "LINEFEED",
+      "api_name": "LINEFEED",
+      "type": "",
+      "description": "Variable para simular un salto de línea en Deluge"
+    },
+    {
+      "id": "374507000022038586",
+      "name": "Nº Convenio - Madrid",
+      "api_name": "N_Convenio_Madrid",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000022038588",
+      "name": "Nº Convenio - Murcia",
+      "api_name": "N_Convenio_Murcia",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000002767059",
+      "name": "TEST",
+      "api_name": "TEST",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000909515537",
+      "name": "Último Año Productos",
+      "api_name": "ULT_ANIO_PRODUCTOS",
+      "type": "",
+      "description": "Es el año de los últimos Productos generados. ejemplo, si el ultimo curso de inicio generado fue 2025/26 aquí se grabará 2025"
+    },
+    {
+      "id": "374507000029077046",
+      "name": "Woztell - Colombia",
+      "api_name": "Todo_Colombia",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000028925746",
+      "name": "Woztell - Ecuador",
+      "api_name": "Woztell_Ecuador",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000028925748",
+      "name": "Woztell - España",
+      "api_name": "Woztell_Espa_a",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000532674015",
+      "name": "Woztell - Latam - EspañaTarde",
+      "api_name": "Woztell_Latam_Espa_aTarde",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000314691025",
+      "name": "Woztell - México",
+      "api_name": "Woztell_M_xico",
+      "type": "",
+      "description": ""
+    },
+    {
+      "id": "374507000465989437",
+      "name": "Woztell_Costa_Rica",
+      "api_name": "Woztell_Costa_Rica",
+      "type": "",
+      "description": ""
+    }
+  ]
+}
