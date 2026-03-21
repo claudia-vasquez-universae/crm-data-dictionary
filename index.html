@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Documentación CRM — UNIVERSAE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <div id="app"></div>
+  <div id="picklist-popup" class="picklist-popup"></div>
+  <div id="pat-modal" class="pat-modal">
+    <div class="pat-box">
+      <h3>GitHub Personal Access Token</h3>
+      <p>Necesario para guardar cambios directamente en el repositorio.<br>
+      Crea un token en <b>GitHub → Settings → Developer settings → Personal access tokens</b> con permiso <b>Contents: Write</b> en este repo.</p>
+      <input id="pat-input" type="password" placeholder="ghp_xxxxxxxxxxxx">
+      <div style="display:flex;gap:8px">
+        <button class="edit-save" style="flex:1;padding:8px" id="btn-save-pat">Guardar</button>
+        <button class="edit-cancel" style="padding:8px 16px" id="btn-close-pat">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
