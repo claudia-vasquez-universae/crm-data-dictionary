@@ -1,0 +1,111 @@
+name: Monitor Zoho CRM Fields — All Modules
+
+on:
+  schedule:
+    - cron: '0 7 * * 2-6'
+  workflow_dispatch:
+    inputs:
+      module:
+        description: 'Módulo específico (vacío = todos)'
+        required: false
+        default: ''
+      force:
+        description: 'Forzar resync aunque no haya cambios'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh Zoho OAuth token
+        id: zoho_token
+        run: |
+          RESPONSE=$(curl -s -X POST "https://accounts.zoho.eu/oauth/v2/token" \
+            -d "grant_type=refresh_token" \
+            -d "client_id=${{ secrets.ZOHO_CLIENT_ID }}" \
+            -d "client_secret=${{ secrets.ZOHO_CLIENT_SECRET }}" \
+            -d "refresh_token=${{ secrets.ZOHO_REFRESH_TOKEN }}")
+          ACCESS_TOKEN=$(echo $RESPONSE | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>console.log(JSON.parse(d).access_token))")
+          echo "access_token=$ACCESS_TOKEN" >> $GITHUB_OUTPUT
+
+      - name: Sync all modules
+        id: sync
+        env:
+          ZOHO_ACCESS_TOKEN: ${{ steps.zoho_token.outputs.access_token }}
+        run: |
+          node scripts/sync_all_modules.js \
+            --token "$ZOHO_ACCESS_TOKEN" \
+            --index docs/modules/index.json \
+            --docs-dir docs/modules \
+            --snapshots-dir snapshots \
+            --output /tmp/sync_result.json \
+            --module "${{ github.event.inputs.module }}"
+
+          echo "has_changes=$(node -e "console.log(require('/tmp/sync_result.json').has_changes)")" >> $GITHUB_OUTPUT
+          echo "summary=$(node -e "console.log(require('/tmp/sync_result.json').summary)")" >> $GITHUB_OUTPUT
+
+      - name: Sync workflows & blueprints
+        env:
+          ZOHO_ACCESS_TOKEN: ${{ steps.zoho_token.outputs.access_token }}
+        run: |
+          node scripts/sync_blueprints_workflows.js \
+            --token "$ZOHO_ACCESS_TOKEN" \
+            --index docs/modules/index.json \
+            --docs-dir docs/modules \
+            --output docs
+
+      - name: Sync config (org, perfiles, roles, grupos, variables, webhooks, reglas, layouts)
+        env:
+          ZOHO_ACCESS_TOKEN: ${{ steps.zoho_token.outputs.access_token }}
+        run: |
+          node scripts/sync_config.js \
+            --token "$ZOHO_ACCESS_TOKEN" \
+            --index docs/modules/index.json \
+            --docs-dir docs/modules \
+            --output docs/config
+
+      - name: Commit and push
+        run: |
+          git config user.name  "Claudia Vásquez"
+          git config user.email "maria.vasquez@universae.com"
+          git add docs/ snapshots/
+          if git diff --cached --quiet; then
+            echo "Sin cambios, nada que commitear"
+          else
+            git commit -m "chore(sync): actualizar campos y workflows — $(date +%d/%m/%Y)"
+            git push origin HEAD:main
+          fi
+
+      - name: Notificar fallo a Zoho Desk
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.zoho.eu
+          server_port: 587
+          username: ${{ secrets.SMTP_USER }}
+          password: ${{ secrets.SMTP_PASS }}
+          subject: "⚠️ [Monitor CRM] Fallo en sync — ${{ github.run_id }}"
+          to: crm@universae.com
+          from: "Monitor CRM <${{ secrets.SMTP_USER }}>"
+          body: |
+            El workflow de sincronización del CRM ha fallado.
+
+            Fecha: ${{ github.run_started_at }}
+            Rama: ${{ github.ref_name }}
+            Ver logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
